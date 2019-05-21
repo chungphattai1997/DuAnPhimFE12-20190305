@@ -1,0 +1,5 @@
+<button [ngClass]="{'gheDaDat':ve.DaDat,'gheDangDat':dangDat}" 
+        [disabled]='ve.DaDat' 
+        (click)="datGhe()" 
+        class="btn" > {{ve.TenGhe}} </button>
+<ng-content></ng-content>

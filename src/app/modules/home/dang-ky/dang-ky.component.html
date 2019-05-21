@@ -1,0 +1,125 @@
+<form #frmDangKy="ngForm" class="container" (ngSubmit)="DangKy(frmDangKy.value)">
+  <h3 class="display-4">Đăng ký</h3>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <span>Email</span>
+        <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" name="Email"
+          #email='ngModel' ngModel required />
+        <div *ngIf="(email.touched || email.dirty) && email.errors ">
+          <div *ngIf="email.errors.required" class="alert alert-danger text-danger">
+            Email không được rổng !
+          </div>
+          <div *ngIf="email.errors.pattern" class="alert alert-danger text-danger">
+            Email không đúng định dạng
+          </div>
+          <!-- <div *ngIf="email.errors.minlength || email.erorrs.maxlength" class="alert alert-danger text-danger">
+            Email từ 6 - 32 ký tự
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <span>Tài khoản</span>
+        <input  class="form-control" name="TaiKhoan"
+          #taiKhoan='ngModel' ngModel required />
+        <div *ngIf="(taiKhoan.touched || taiKhoan.dirty) && taiKhoan.errors ">
+          <div *ngIf="taiKhoan.errors.required" class="alert alert-danger text-danger">
+            Tài khoản không được bỏ trống
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <span>Mật khẩu</span>
+        <input required #matKhau="ngModel" class="form-control" name="MatKhau" ngModel />
+        <div *ngIf="(matKhau.touched || matKhau.dirty) && matKhau.errors ">
+          <div *ngIf="matKhau.errors.required" class="alert alert-danger text-danger">
+            Mật khẩu không được để trống
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <span>Nhập lại khẩu</span>
+        <input  #reMatKhau="ngModel" required [ngClass]="{'ng-invalid': reMatKhau.value != matKhau.value}" 
+        class="form-control" name="reMatKhau" ngModel />
+        <div *ngIf="(reMatKhau.touched || reMatKhau.dirty) && reMatKhau.errors || reMatKhau.value != matKhau.value">
+          <div *ngIf="kiemTraMatKhau(reMatKhau.value,matKhau.value)" class="alert alert-danger text-danger">
+            Mật khẩu không trùng khớp
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <span>Họ tên</span>
+        <input required #hoTen="ngModel" class="form-control" name="HoTen" ngModel />
+        <div *ngIf="(hoTen.touched || hoTen.dirty) && hoTen.errors ">
+          <div *ngIf="hoTen.errors.required" class="alert alert-danger text-danger">
+            Họ tên không được để trống
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <span>Số điện thoại</span>
+        <input  type="number" class="form-control" name="SoDT"
+          #SoDienThoai='ngModel' ngModel required />
+        <div *ngIf="(SoDienThoai.touched || SoDienThoai.dirty) && SoDienThoai.errors ">
+          <div *ngIf="SoDienThoai.errors.required" class="alert alert-danger text-danger">
+            Số điện thoại không được bỏ trống
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <button [disabled]="frmDangKy.invalid || frmDangKy.submitted" type="submit" class="btn btn-success">Đăng ký</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="container">
+  <h3>Danh sách người dùng</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tài khoản</th>
+        <th>Mật khẩu</th>
+        <th>Họ tên</th>
+        <th>Email</th>
+        <th>Số điện thoại</th>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let nguoiDung of mangNguoiDung'>
+        <td>{{nguoiDung.TaiKhoan}}</td>
+        <td>{{nguoiDung.MatKhau}}</td>
+        <td>{{nguoiDung.HoTen}}</td>
+        <td>{{nguoiDung.Email}}</td>
+        <td>{{nguoiDung.SoDienThoai}}</td>
+        <td><button (click)="Edit(nguoiDung)" class="btn btn-primary">Sửa</button></td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>

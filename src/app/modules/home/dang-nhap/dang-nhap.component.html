@@ -1,0 +1,20 @@
+<div class="container">
+    <h3 class="display-4">Đăng nhập</h3>
+    <form #frmDangNhap='ngForm' (ngSubmit)="DangNhap(frmDangNhap.value)">
+        <div class="form-group">
+          <span>Tài khoản</span>
+          <input type="text" ngModel name="TaiKhoan" class="form-control" />
+        </div>
+        <div class="form-group">
+            <span>Mật khẩu</span>
+            <input type="password" class="form-control" name="MatKhau" ngModel/> 
+      </div>
+      
+    <div class="form-group">
+        <button type="submit" 
+                class="btn btn-success">
+                Đăng nhập      
+        </button>
+  </div>
+    </form>
+</div>

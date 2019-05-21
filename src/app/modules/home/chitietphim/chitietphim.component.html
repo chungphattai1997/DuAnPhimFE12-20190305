@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <img src="{{phim.HinhAnh}}" width="150" height="200" />
+    </div>
+    <div class="col-md-8">
+      <table class="table">
+        <tr>
+          <th></th>
+          <th>Thông tin</th>
+        </tr>
+        <tr>
+          <td>
+            Tên phim
+          </td>
+          <td>{{phim.TenPhim}}</td>
+        </tr>
+        <tr>
+            <td>
+              Mô tả
+            </td>
+            <td>{{phim.MoTa}}</td>
+          </tr>
+      </table>
+    </div>
+  </div>
+  <h3 class="display-4">Lịch chiếu</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Rạp</th>
+        <th>Ngày chiếu</th>
+        <th>Giờ chiếu</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let lichChieu of phim.LichChieu">
+        <td> {{lichChieu.Rap.TenRap}}</td>
+        <td>{{lichChieu.NgayChieuGioChieu | date:'dd-MM-yyyy'}}</td>
+        <td>{{lichChieu.NgayChieuGioChieu | date:'hh:mm'}}</td>
+        <td><a class="btn btn-success" routerLink="/chitietphongve/{{lichChieu.MaLichChieu}}" >Đặt vé </a></td>
+      </tr>
+     
+    </tbody>
+  </table>
+</div>

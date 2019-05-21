@@ -1,0 +1,11 @@
+<div class="container">
+  <h3 class="text-center">MÀN HÌNH</h3>
+  <div class="text-center">
+    <app-ve [ve]='ve' *ngFor='let ve of danhSachVe;let i = index;'>
+      <br *ngIf='(i+1)%10 == 0' />
+    </app-ve>
+    <button class="btn btn-primary" (click)="datVe()">Đặt vé</button>
+  </div>
+</div>
+
+
